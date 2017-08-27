@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% include 'banner.html' %}
+
+{% block content %}
+<!-- Main -->
+<article id="main">
+
+  <header class="special container">
+    <h2>"The world is just a book and those, who don't travel, read just a single page." </h2>
+  </header>
+
+  <!-- Two -->
+  <section class="wrapper style1 container special">
+    <div class="row">
+
+      {% for article in articles_page.object_list %}
+      <div class="4u">
+
+        <section>
+          <span class="icon feature fa-{{ article.icon }}"></span>
+          <header>
+            <a href="{{ SITEURL }}/{{ article.url }}" rel='bookmark'><h3>{{ article.title }}</h3></a>
+          </header>
+          <p>{{ article.content[:75]|striptags }}</p>
+          <footer>
+              <ul class="buttons">
+                  <li><a href="{{ SITEURL }}/{{ article.url }}" class="button small">Read More</a></li>
+              </ul>
+          </footer>
+        </section>
+
+      </div>
+      {% endfor %}
+
+    </div> <!-- /.row -->
+
+    {% include 'pagination.html' %}
+
+  </section> <!-- /section -->
+
+</article>
+
+<!-- {% include 'coolstuff.html' %}
+{% include 'cta.html' %}-->
+
+{% endblock content %}

@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block title %}{{ category|striptags }} | {{ super() }}{% endblock title %}
+
+{% block content %}
+<!-- Main -->
+<article>
+
+  <header class="special container">
+    <h2>{{ category }}</h2>
+    <!-- add page sub title here -->
+
+    <p>{{ CATEGORY_TITLE }}</p>
+  </header>
+
+    <!-- One -->
+    <section class="wrapper style5 container">
+
+
+                {% for article in articles %}
+                    <section>
+
+                        {% if article.cover %}<img class="wrapper style7" src="{{ article.cover }}" alt="">{% endif %}
+                        <div class="wrapper style6 container">
+                        <header>
+                            <p><a href="{{ SITEURL }}/{{ article.url }}"><h3>{{ article.title }}</h3></a></p>
+                        </header>
+                        <p >{{ article.content[:200]|striptags }}...</p>
+                        <footer>
+                            <ul class="buttons">
+                                  <li><a href="{{ SITEURL }}/{{ article.url }}" class="button small">Read More</a></li>
+                            </ul>
+                        </footer>
+                        </div>
+                        
+                    </section>
+
+                {% endfor %}
+ 
+    </section>
+
+
+</article>
+{% endblock content %}
